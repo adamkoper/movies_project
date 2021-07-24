@@ -43,14 +43,7 @@ def get_single_movie_cast(movie_id):
     return response.json()["cast"]
 
 
-todos = [
-    {
-        'type': 'latest', "id": 1
-    },
-    {
-        'type': 'now_playing', "id": 2
-    }
-]
+
 
 
 
