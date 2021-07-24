@@ -4,11 +4,13 @@ import tmdb_client
 app = Flask(__name__)
 
 
+movie_list_types = [{"type": "popular"}, {"type": "top_rated"}, {"type": "upcoming"}, {"type": "now_playing"}]
+
 @app.route('/')
 def homepage():
     selected_list = request.args.get('list_type', "popular")
     movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
-    return render_template("homepage.html", movies=movies)
+    return render_template("homepage.html", movies=movies, movie_list_types=movie_list_types)
 
 
 @app.route("/movie/<movie_id>")

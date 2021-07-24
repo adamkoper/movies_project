@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 
 api_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDQxNDk5YjI4NmQyNjZjMmJiZjdlZmFmODZhZDA1OSIsInN1YiI6IjY" \
@@ -41,6 +41,16 @@ def get_single_movie_cast(movie_id):
     }
     response = requests.get(endpoint, headers=headers)
     return response.json()["cast"]
+
+
+todos = [
+    {
+        'type': 'latest', "id": 1
+    },
+    {
+        'type': 'now_playing', "id": 2
+    }
+]
 
 
 
