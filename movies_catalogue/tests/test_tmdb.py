@@ -1,5 +1,6 @@
-import tmdb_client
+import tmdb_client, pytest
 from unittest.mock import Mock
+from main import app
 
 requests_mock = Mock()
 response = requests_mock.return_value
@@ -44,4 +45,19 @@ def test_call_tmdb_api(monkeypatch):
 
    endpoint = tmdb_client.call_tmdb_api(endpoint='/')
    assert endpoint == mock_endpoint
+
+
+@pytest.mark.parametrize('list_type', (
+   ("popular"),
+   ("top_rated"),
+   ("upcoming"),
+   ("now_playing"),
+))
+def test_homepage(monkeypatch, list_type):
+   api_mock = Mock(return_value={'results': []})
+   monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
+
+   with app.test_client() as client:
+       response = client.get('/')
+       assert response.status_code == 200
 
