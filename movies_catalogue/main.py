@@ -3,6 +3,7 @@ import tmdb_client
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def homepage():
     movie_list_types = ["popular", "top_rated", "upcoming", "now_playing"]
